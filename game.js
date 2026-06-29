@@ -27,6 +27,10 @@ let enemy = {
     direction: 1
 };
 
+let score = 0;
+
+setInterval(() => {score++;}, 1000);
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") cat.speedX = 5;
   if (e.key === "ArrowLeft") cat.speedX = -5;
@@ -60,11 +64,16 @@ function resetGame() {
     cat.y = 300;
     cat.speedX = 0;
     cat.speedY = 0;
+    score = 0;
 }
 
 
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "white";
+    ctx.font = "20px Arial";
+    ctx.fillText("Score: " + score, 10, 30);
 
   cat.speedY += 0.5;
   cat.x += cat.speedX;
